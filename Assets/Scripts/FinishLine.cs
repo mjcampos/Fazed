@@ -7,6 +7,9 @@ public class FinishLine : MonoBehaviour
 {
     void OnTriggerEnter(Collider other)
     {
-        CameraManager.Instance.SetActiveCamera(Cameras.endCamera);
+        if (other.CompareTag("Player"))
+        {
+            CameraManager.Instance.SetActiveCamera(Cameras.endCamera);
+        }
     }
 }

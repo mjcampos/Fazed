@@ -8,13 +8,13 @@ namespace Player
     public class Health : MonoBehaviour
     {
         [SerializeField] int health = 100;
+        [SerializeField] float damageInterval = 0.125f;
         [SerializeField] GameObject playerFollowCamera;
         
         Player _player;
         
         bool _inGas = false;
         float _damageTimer = 0f;
-        float _damageInterval = 0.02f;
 
         void Start()
         {
@@ -29,7 +29,7 @@ namespace Player
             {
                 _damageTimer += Time.deltaTime;
 
-                if (_damageTimer >= _damageInterval)
+                if (_damageTimer >= damageInterval)
                 {
                     TakeDamage(1);      // Lose 1 health
                     _damageTimer = 0f;

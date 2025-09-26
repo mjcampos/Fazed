@@ -7,7 +7,7 @@ namespace Player
 {
     public class Player : MonoBehaviour
     {
-        public bool IsActive = false;
+        public bool IsActive { get; private set; } = false;
 
         CinemachineBrain _brain;
         CinemachineVirtualCamera _camera;
