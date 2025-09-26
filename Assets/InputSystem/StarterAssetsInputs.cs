@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 #if ENABLE_INPUT_SYSTEM
 using UnityEngine.InputSystem;
@@ -18,6 +19,13 @@ namespace StarterAssets
 		[Header("Mouse Cursor Settings")]
 		public bool cursorLocked = true;
 		public bool cursorInputForLook = true;
+		
+		Player.Player _player;
+
+		void Start()
+		{
+			_player = GetComponent<Player.Player>();
+		}
 
 #if ENABLE_INPUT_SYSTEM
 		public void OnMove(InputValue value)
@@ -42,7 +50,7 @@ namespace StarterAssets
 
 		public void MoveInput(Vector2 newMoveDirection)
 		{
-			move = newMoveDirection;
+			move = _player.IsStillAlive ? newMoveDirection : Vector2.zero;
 		} 
 
 		public void LookInput(Vector2 newLookDirection)

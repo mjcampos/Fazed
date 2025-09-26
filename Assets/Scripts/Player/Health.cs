@@ -7,15 +7,18 @@ namespace Player
     public class Health : MonoBehaviour
     {
         [SerializeField] int health = 100;
+        [SerializeField] GameObject playerFollowCamera;
+        
+        Player _player;
         
         bool _inGas = false;
         float _damageTimer = 0f;
         float _damageInterval = 0.125f;     // 1 second
-        
-        bool _isGameOver = false;
 
         void Start()
         {
+            _player = GetComponent<Player>();
+            
             HealthManager.Instance.SetHealthTextDisplay(health);
         }
 
@@ -35,7 +38,7 @@ namespace Player
 
         void TakeDamage(int amount)
         {
-            if (_isGameOver)  return;
+            if (!_player.IsStillAlive) return;
             
             health = Mathf.Max(0,  health - amount);
             
@@ -43,8 +46,7 @@ namespace Player
 
             if (health < 1)
             {
-                Debug.Log("Player loses");
-                _isGameOver = true;
+                GameOverSequence();
             }
         }
 
@@ -57,6 +59,25 @@ namespace Player
         {
             // Reset gas flag each frame; only stays true if gas calls OnGasHit again
             _inGas = false;
+        }
+
+        void GameOverSequence()
+        {
+            /*
+             * When player's health drops to 0 perform the following sequence:
+             * 1. Stop player movement
+             * 2. Disable player follow camera
+             * 3. Activate Game Over sequence in Health Manager
+             */
+            
+            // Step 1
+            _player.IsStillAlive = false;
+            
+            // Step 2
+            playerFollowCamera.SetActive(false);
+            
+            // Step 3
+            HealthManager.Instance.GameOverDisplay();
         }
     }
 }
