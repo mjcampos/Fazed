@@ -1,4 +1,6 @@
+using System;
 using Cinemachine;
+using Helpers;
 using UnityEngine;
 
 namespace Singletons
@@ -19,6 +21,11 @@ namespace Singletons
             }
                 
             Instance = this;
+        }
+
+        void Start()
+        {
+            SetActiveCamera(Cameras.startCamera);
         }
 
         public void SetActiveCamera(string cameraName)
