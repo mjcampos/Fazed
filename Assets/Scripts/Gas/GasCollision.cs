@@ -5,7 +5,7 @@ namespace Gas
 {
     public class GasCollision : MonoBehaviour
     {
-        void OnParticleCollision(GameObject other)
+        void OnTriggerStay(Collider other)
         {
             if (other.CompareTag("Player"))
             {

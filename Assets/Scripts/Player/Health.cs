@@ -14,7 +14,7 @@ namespace Player
         
         bool _inGas = false;
         float _damageTimer = 0f;
-        float _damageInterval = 0.12f;     // 1 second
+        float _damageInterval = 0.02f;
 
         void Start()
         {
