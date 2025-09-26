@@ -20,7 +20,7 @@ public class GameManager : MonoBehaviour
         Instance = this;
     }
 
-    public void GameOverSequence()
+    void StartSequence()
     {
         // Disable the player Follow Camera
         playerFollowCamera.SetActive(false);

@@ -50,7 +50,7 @@ namespace StarterAssets
 
 		public void MoveInput(Vector2 newMoveDirection)
 		{
-			move = _player.IsStillAlive ? newMoveDirection : Vector2.zero;
+			move = _player.IsActive ? newMoveDirection : Vector2.zero;
 		} 
 
 		public void LookInput(Vector2 newLookDirection)
