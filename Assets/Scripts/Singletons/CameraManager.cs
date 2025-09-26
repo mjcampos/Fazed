@@ -10,6 +10,8 @@ namespace Singletons
         public static CameraManager Instance { get; private set; }
         
         [SerializeField] CinemachineVirtualCamera[] cameras;
+
+        GameObject _instructionsCanvas;
         
         void Awake()
         {
@@ -25,7 +27,16 @@ namespace Singletons
 
         void Start()
         {
-            SetActiveCamera(Cameras.startCamera);
+            _instructionsCanvas = GameObject.Find("Instructions Canvas");
+
+            if (_instructionsCanvas != null)
+            {
+                SetActiveCamera(Cameras.startCamera);
+            }
+            else
+            {
+                SetActiveCamera(Cameras.playerFollowCamera);
+            }
         }
 
         public void SetActiveCamera(string cameraName)
