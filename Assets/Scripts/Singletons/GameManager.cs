@@ -6,7 +6,7 @@ public class GameManager : MonoBehaviour
 {
     public static GameManager Instance { get; private set; }
     
-    [SerializeField] GameObject playerFollowCamera;
+    public bool GameOver { get; set; } = false;
 
     void Awake()
     {
@@ -18,11 +18,5 @@ public class GameManager : MonoBehaviour
         }
             
         Instance = this;
-    }
-
-    void StartSequence()
-    {
-        // Disable the player Follow Camera
-        playerFollowCamera.SetActive(false);
     }
 }

@@ -2,6 +2,7 @@ using System;
 using UnityEngine;
 #if ENABLE_INPUT_SYSTEM
 using UnityEngine.InputSystem;
+using UnityEngine.SceneManagement;
 #endif
 
 namespace StarterAssets
@@ -44,6 +45,16 @@ namespace StarterAssets
 		public void OnSprint(InputValue value)
 		{
 			SprintInput(value.isPressed);
+		}
+
+		public void OnRestart(InputValue value)
+		{
+			if (GameManager.Instance.GameOver)
+			{
+				// Get the active scene and reload it
+				Scene currentScene = SceneManager.GetActiveScene();
+				SceneManager.LoadScene(currentScene.name);
+			}
 		}
 #endif
 

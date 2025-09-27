@@ -12,6 +12,7 @@ namespace Singletons
         
         [SerializeField] TextMeshProUGUI healthText;
         [SerializeField] TextMeshProUGUI gameOverText;
+        [SerializeField] GameObject gameWonText;
         [SerializeField] Image blackScreen;
         [SerializeField] float fadeDuration = 1f;
 
@@ -25,6 +26,11 @@ namespace Singletons
             }
             
             Instance = this;
+        }
+
+        void Start()
+        {
+            gameWonText.SetActive(false);
         }
 
         public void SetHealthTextDisplay(int amount)
@@ -61,6 +67,11 @@ namespace Singletons
             
             blackScreen.color = blackScreenColor;
             gameOverText.color = gameOverColor;
+        }
+
+        public void GameWonSequence()
+        {
+            gameWonText.SetActive(true);
         }
     }
 }

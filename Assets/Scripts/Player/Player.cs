@@ -12,19 +12,18 @@ namespace Player
         CinemachineBrain _brain;
         CinemachineVirtualCamera _camera;
 
-        void Start()
-        {
-            _brain = Camera.main.GetComponent<CinemachineBrain>();
-        }
-
         void Update()
         {
-            if (_brain != null)
+            // Cache the cinemachine brain dynamically if it's missing
+            if (_brain == null)
             {
-                ICinemachineCamera activeCam = _brain.ActiveVirtualCamera;
-                
-                IsActive = activeCam.Name == Cameras.playerFollowCamera;
+                _brain = Camera.main?.GetComponent<CinemachineBrain>();
+                return;
             }
+            
+            ICinemachineCamera activeCam = _brain.ActiveVirtualCamera;
+            
+            IsActive = (activeCam != null) && (activeCam.Name == Cameras.playerFollowCamera);
         }
     }
 }

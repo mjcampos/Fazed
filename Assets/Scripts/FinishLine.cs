@@ -9,7 +9,9 @@ public class FinishLine : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
+            GameManager.Instance.GameOver = true;
             CameraManager.Instance.SetActiveCamera(Cameras.endCamera);
+            HealthManager.Instance.GameWonSequence();
         }
     }
 }

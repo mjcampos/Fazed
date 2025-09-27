@@ -10,7 +10,6 @@ namespace Singletons
         public static CameraManager Instance { get; private set; }
         
         [SerializeField] CinemachineVirtualCamera[] cameras;
-        [SerializeField] bool skipInstructionPhase = false;
 
         GameObject _instructionsCanvas;
         
@@ -38,12 +37,7 @@ namespace Singletons
         
         void InstructionSetup()
         {
-            if (skipInstructionPhase)
-            {
-                _instructionsCanvas = GameObject.Find("Instructions Canvas");
-            
-                SetActiveCamera((_instructionsCanvas != null) ? Cameras.startCamera : Cameras.playerFollowCamera);
-            }
+            SetActiveCamera((_instructionsCanvas != null) ? Cameras.startCamera : Cameras.playerFollowCamera);
         }
     }
 }
