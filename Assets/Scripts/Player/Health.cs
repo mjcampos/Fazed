@@ -1,4 +1,5 @@
 using System;
+using System.Collections;
 using Helpers;
 using Singletons;
 using UnityEngine;
@@ -21,6 +22,8 @@ namespace Player
             _player = GetComponent<Player>();
             
             HealthManager.Instance.SetHealthTextDisplay(health);
+
+            StartCoroutine(DamageOverTime());
         }
 
         void Update()
@@ -48,6 +51,15 @@ namespace Player
             if (health < 1)
             {
                 GameOverSequence();
+            }
+        }
+
+        IEnumerator DamageOverTime()
+        {
+            while (health > 0)
+            {
+                yield return new WaitForSeconds(1f);
+                TakeDamage(1);
             }
         }
 
