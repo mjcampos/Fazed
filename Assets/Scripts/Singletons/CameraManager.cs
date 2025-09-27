@@ -37,6 +37,8 @@ namespace Singletons
         
         void InstructionSetup()
         {
+            _instructionsCanvas = GameObject.Find("Instructions Canvas");
+            
             SetActiveCamera((_instructionsCanvas != null) ? Cameras.startCamera : Cameras.playerFollowCamera);
         }
     }
